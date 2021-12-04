@@ -1,7 +1,7 @@
 import prisma from "../prisma";
 
 class CreateListService {
-  async execulte(name: string){
+  async execulte(name: string, user_id: string){
     let list = await prisma.list.findFirst({ where: { name } });
 
     if(list){
@@ -10,6 +10,7 @@ class CreateListService {
 
     list = await prisma.list.create({
       data: {
+        user_id,
         name
       }
     });

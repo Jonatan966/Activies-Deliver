@@ -3,12 +3,12 @@ import { CreateListService } from "../services/CreateListServices";
 
 class CreateListController {
   async handle(request: Request, response: Response){
-    const { name } = request.body;
+    const { name, user_id } = request.body;
 
     const createList = new CreateListService();
 
     try {
-      const idList = await createList.execulte(name);
+      const idList = await createList.execulte(name, user_id);
       return response.status(200).json(idList);
     } catch (error) {
       if(error instanceof Error)

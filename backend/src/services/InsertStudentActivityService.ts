@@ -3,25 +3,25 @@ import prisma from "../prisma";
 interface StudentProps {
   list_id: string;
   name: string;
-  numero: number;
+  called: number;
   files: string;
 }
 
 class InsertStudentActivityService {
 
-  async execulte({ name, numero, files, list_id }: StudentProps){    
+  async execulte({ name, called, files, list_id }: StudentProps){    
     const list = await prisma.list.findFirst(
       {
         where: {
           id: list_id
         },
         include: {
-          Student: true
+          students_activities: true
         }
       }
     );
     
-    const studentAlreadyExistsInList = list?.Student.some(student => student.numero === numero);      
+    const studentAlreadyExistsInList = list?.students_activities.some(student => student.called === called);      
 
     if(studentAlreadyExistsInList){
       throw new Error("Safadinho, outro aluno já cadastrou");
@@ -30,9 +30,9 @@ class InsertStudentActivityService {
     const userActivity = await prisma.student.create({
       data: {
         name,
-        numero,
+        called,
         files,
-        listId: list_id,
+        list_id
       }
     })
 
