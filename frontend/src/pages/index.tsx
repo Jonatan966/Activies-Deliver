@@ -1,8 +1,9 @@
-import { Box, Flex, Input, Button, Text, Image } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { Box, Flex, Input, Button, Text, Image } from "@chakra-ui/react";
 import { MdAdd } from "react-icons/md";
-import { List } from "../components/List";
 import { api } from "../services/api";
+
+import { List } from "../components/List";
 
 type Tasks = {
   id: string;
@@ -58,7 +59,11 @@ export default function Home() {
       </Flex>
 
       { tasks.map( task => (
-        <List key={task} router={`/students/${task}`} title={task} />
+        <List 
+          key={task} 
+          router={`/HandedOut/${task}`} 
+          title={task} 
+        />
       ))}
     </Box>
   )

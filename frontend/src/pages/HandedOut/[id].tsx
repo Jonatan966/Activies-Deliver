@@ -4,8 +4,11 @@ import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons"
 
 import { List } from "../../components/List";
+import { useRouter } from "next/router";
 
 export default function HandedOut(){
+  const { query } = useRouter();
+
   const [ activityFinisehd, setActivityFinished ] = useState(false);
 
   return (
@@ -50,7 +53,10 @@ export default function HandedOut(){
       </nav>
 
       <main>
-        <List title="Damaso" router={`/student/Damaso`}/>
+        <List 
+          title="Damaso" 
+          router={`/Student/Damaso`}
+        />
       </main>
     </Box>
   );

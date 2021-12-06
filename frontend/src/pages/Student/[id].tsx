@@ -2,6 +2,8 @@ import { FormEvent, useState } from "react";
 import { Box, Text, Flex, Button, Input, FormControl } from "@chakra-ui/react";
 
 import { Modal } from "../../components/Modal";
+import { route } from "next/dist/server/router";
+import { Router, useRouter } from "next/router";
 
 export default function Student(){
   const [ modalConfirmIsOpen, setModalConfirmIsOpen ] = useState(false);
@@ -29,7 +31,12 @@ export default function Student(){
         justifyContent="space-around"
         h="100vh"
       >
-        <Flex justifyContent="space-between" gridGap={4} alignItems="stretch">
+        <Flex 
+          flexDirection="column"
+          justifyContent="space-between" 
+          gridGap={4} 
+          alignItems="stretch"
+        >
           <Box 
             marginTop={4}
             w="100%" 
@@ -38,7 +45,7 @@ export default function Student(){
             padding={4}
           >
             <Text fontSize={14}>Nome</Text>
-            <Input variant="flushed" onChange={e => setName(e.target.value)}/>
+            <Text>Damaso Magno Lima</Text>
           </Box>  
           <Box
             marginTop={4}
@@ -47,21 +54,18 @@ export default function Student(){
             padding={4}
           >
             <Text fontSize={14}>Número</Text>
-            <Input variant="flushed" onChange={e => setCalled(e.target.value)}/>
+            <Text>9</Text>
+          </Box>  
+          <Box
+            marginTop={4}
+            borderWidth={1} 
+            borderRadius={4} 
+            padding={4}
+          >
+            <Text fontSize={14}>Imagens</Text>
+            <Text>9</Text>
           </Box>
         </Flex>
-
-        <Input type="file"/>
-
-        <Button 
-          backgroundColor="#7474FE" 
-          padding={8}
-          type="submit"
-          disabled={!name && !called}
-          onClick={() => setModalConfirmIsOpen(true)}
-        >
-          <Text color="#FFF">ENVIAR</Text>
-        </Button>
       </Flex>
     </FormControl>
 
